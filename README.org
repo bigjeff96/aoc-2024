@@ -1,3 +1,4 @@
+* Advent of code 2024 in Odin
 These are my solutions to advent of code 2024 in odin.
 
 To run the code you will need odin installed and just (or simply read the justfile and input the commands by hand on the terminal).
