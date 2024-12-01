@@ -5,6 +5,12 @@ To run the code you will need odin installed and just (or simply read the justfi
 
 To run the code for day 1 for example, do the following:
 
-#+BEGIN_SRC 
+#+BEGIN_SRC
 just run 1
+#+END_SRC
+
+To run all the days you do:
+
+#+BEGIN_SRC
+just run-all
 #+END_SRC
