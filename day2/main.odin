@@ -17,19 +17,8 @@ main :: proc() {
 
 part_1 :: proc() {
     input := string(input_data)
-    rows : [dynamic][dynamic]int
-    id := 0
-    for row in strings.split_lines_iterator(&input) {
-        row := row
-        row_mem := make([dynamic]int)
-        append(&rows, row_mem)
-        for element in strings.fields_iterator(&row) {
-            val, ok := strconv.parse_int(element, 10)
-            if !ok do panic("can't parse int")
-            append(&rows[id], val)
-        }
-        id += 1
-    }
+    rows := parse_input(input)
+
     count_sorted := 0
     for row in rows {
         is_ascending, is_descending := test(row[:])
@@ -40,25 +29,12 @@ part_1 :: proc() {
 
 part_2 :: proc() {
     input := string(input_data)
-    rows : [dynamic][dynamic]int
-    id := 0
-    for row in strings.split_lines_iterator(&input) {
-        row := row
-        row_mem := make([dynamic]int)
-        append(&rows, row_mem)
-        for element in strings.fields_iterator(&row) {
-            val, ok := strconv.parse_int(element, 10)
-            if !ok do panic("can't parse int")
-            append(&rows[id], val)
-        }
-        id += 1
-    }
+    rows := parse_input(input)
 
     count_sorted := 0
     rows_to_fix : [dynamic]int
     for row, id in rows {
         is_ascending, is_descending := test(row[:])
-
         if is_ascending || is_descending do count_sorted += 1
         else if !is_ascending && !is_descending do append(&rows_to_fix, id)
     }
@@ -81,10 +57,27 @@ part_2 :: proc() {
     print("- Answer part 2:", count_sorted)
 }
 
+parse_input :: proc(input: string) -> [dynamic][dynamic]int {
+    input := input
+    rows : [dynamic][dynamic]int
+    id := 0
+    for row in strings.split_lines_iterator(&input) {
+        row := row
+        row_mem := make([dynamic]int)
+        append(&rows, row_mem)
+        for element in strings.fields_iterator(&row) {
+            val, ok := strconv.parse_int(element, 10)
+            if !ok do panic("can't parse int")
+            append(&rows[id], val)
+        }
+        id += 1
+    }
+    return rows
+}
+
 test :: proc(row: []int) -> (ascending: bool, descending: bool) {
     ascending = true
     descending = true
-
     for i in 1..<len(row) {
         a := row[i - 1]
         b := row[i]
@@ -94,7 +87,6 @@ test :: proc(row: []int) -> (ascending: bool, descending: bool) {
             break
         }
     }
-
     for i in 1..<len(row) {
         a := row[i - 1]
         b := row[i]
@@ -104,7 +96,6 @@ test :: proc(row: []int) -> (ascending: bool, descending: bool) {
             break
         }
     }
-
     return
 }
 
