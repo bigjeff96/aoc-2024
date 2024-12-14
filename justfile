@@ -1,6 +1,6 @@
 run day:
     @mkdir -p output
-    odin run day{{day}}/ -use-separate-modules -o:size -out:output/day{{day}}.exe
+    odin run day{{day}}/ -use-separate-modules -debug -out:output/day{{day}}.exe
 
 run-fast day:
     odin run day{{day}}/ -o:speed -out:output/day{{day}}.exe
