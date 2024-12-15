@@ -147,7 +147,6 @@ part_2 :: proc() {
                 #partial switch &v in cell {
                 case Free: v.set = {}
                 }
-
             }
         }
     }

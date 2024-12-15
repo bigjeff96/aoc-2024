@@ -11,3 +11,20 @@ run-all:
         just run "${dir:5}"
     done
 
+build day:
+    odin build day{{day}}/ -use-separate-modules -debug -out:output/day{{day}}.exe
+
+build-fast day:
+    odin build day{{day}}/ -o:speed -out:output/day{{day}}.exe
+
+build-tool:
+	odin build tools/temple/cli/ -out:tools/temple_cli
+	./tools/temple_cli tools/make_day_dir/ tools/temple/
+	odin build tools/make_day_dir/ -out:tools/make_day_dir.exe
+
+make-day day:
+	tools/make_day_dir.exe {{day}}
+	python3 tools/get_input.py {{day}} > day{{day}}/input.txt
+
+watch day:
+    find day{{day}} | entr -cc just run {{day}}
