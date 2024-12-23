@@ -34,7 +34,7 @@ main :: proc() {
 
 }
 
-rotate_90 :: proc(orientation: [2]int) -> [2]int {
+rotate_90 :: #force_inline proc(orientation: [2]int) -> [2]int {
     return {orientation.y, -orientation.x}
 }
 

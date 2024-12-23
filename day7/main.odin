@@ -66,8 +66,8 @@ part_2 :: proc() {
 
     for total, id in totals {
         nums := lists[id]
-        result :u64= 0
-        total_combinations : u64 = auto_cast math.pow(3.0, f64( len(nums) - 1))
+        result := 0
+        total_combinations :int = auto_cast math.pow(3.0, f64( len(nums) - 1))
         total_symbols := len(nums) - 1
         buffer : [50]int
         symbol_table := buffer[:total_symbols]
@@ -89,26 +89,26 @@ part_2 :: proc() {
 
         works := false
 
-        outer: for i: u64 = 0; i < total_combinations; i += 1 {
+        outer: for i := 0; i < total_combinations; i += 1 {
             if i > 0 do increment_symbol_table(symbol_table[:])
-            result = auto_cast nums[0]
+            result = nums[0]
             for symbol, bit in symbol_table {
                 if symbol == -1 {
                     // plus
-                    result += auto_cast nums[bit+1]
+                    result += nums[bit+1]
                 } else if symbol == 0 {
                     // multiply
-                    result *= auto_cast nums[bit+1]
-                } else if symbol == 1 {
+                    result *= nums[bit+1]
+                } else {
                     // concat
                     a := int(math.log10_f64(auto_cast nums[bit+1]) + 1)
-                    result = result * u64(math.pow_f64(10.0, auto_cast a)) + auto_cast nums[bit+1]
+                    result = result * int(math.pow_f64(10.0, auto_cast a)) + nums[bit+1]
                 }
 
-                if result > auto_cast total do continue outer
+                if result > total do continue outer
             }
 
-            if result == auto_cast total {
+            if result == total {
                 works = true
                 break
             }
