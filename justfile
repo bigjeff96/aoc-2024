@@ -18,8 +18,8 @@ build-fast day:
     odin build day{{day}}/ -o:speed -out:output/day{{day}}.exe
 
 build-tool:
-	odin build tools/temple/cli/ -out:tools/temple_cli
-	./tools/temple_cli tools/make_day_dir/ tools/temple/
+	odin build tools/temple/cli/ -out:tools/temple_cli.exe
+	./tools/temple_cli.exe tools/make_day_dir/ tools/temple/
 	odin build tools/make_day_dir/ -out:tools/make_day_dir.exe
 
 make-day day:
