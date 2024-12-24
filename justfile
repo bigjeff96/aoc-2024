@@ -27,4 +27,4 @@ make-day day:
 	python3 tools/get_input.py {{day}} > day{{day}}/input.txt
 
 watch day:
-    find day{{day}} | entr -cc just run {{day}}
+    watchexec -w day{{day}}/ just run {{day}}
