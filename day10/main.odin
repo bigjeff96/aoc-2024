@@ -29,8 +29,10 @@ part_1 :: proc() {
     answer := 0
     for zero in zeros {
         unique_nines := make(map[[2]int]struct{}, 5, context.temp_allocator)
-        depth_first_search :: proc(mat: [dynamic][dynamic]int, position: [2]int, unique_nines: ^map[[2]int]struct{}) {
-
+        depth_first_search :: proc(mat: [dynamic][dynamic]int,
+                                   position: [2]int,
+                                   unique_nines: ^map[[2]int]struct{})
+        {
             if mat[position.x][position.y] == 9 {
                 unique_nines[position] = {}
                 return
@@ -83,7 +85,6 @@ part_2 :: proc() {
                                    builder: ^strings.Builder,
                                    unique_nines: ^map[string]struct{})
         {
-
             if mat[position.x][position.y] == 9 {
                 str := strings.to_string(builder^)
                 unique_nines[str] = {}

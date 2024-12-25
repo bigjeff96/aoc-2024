@@ -28,3 +28,9 @@ make-day day:
 
 watch day:
     watchexec -w day{{day}}/ just run {{day}}
+
+make-next-day:
+    #!/usr/bin/env bash
+    count=$(fd ^day.*$ -t d | wc -l)
+    ((count=count+1))
+    just make-day $count
