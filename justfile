@@ -7,8 +7,14 @@ run-fast day:
 
 run-all:
     #!/usr/bin/env bash
-    for dir in `find -name "day*" -type d`; do
-        just run "${dir:5}"
+    for dir in `fd ^day.*$ -t d | rg "\d+" -o | sort -n`; do
+        just run $dir
+    done
+
+run-fast-all:
+    #!/usr/bin/env bash
+    for dir in `fd ^day.*$ -t d | rg "\d+" -o | sort -n`; do
+        just run-fast $dir
     done
 
 build day:

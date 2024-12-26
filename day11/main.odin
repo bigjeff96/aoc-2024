@@ -84,9 +84,8 @@ part_2 :: proc() {
         return cache[args]
     }
     answer := 0
-    for stone in data {
-    answer += num_stones_n_steps(stone, 75, &cache)
-    }
+    for stone in data do answer += num_stones_n_steps(stone, 75, &cache)
+
     print("Answer part 2:", answer)
 }
 
