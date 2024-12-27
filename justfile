@@ -40,3 +40,9 @@ make-next-day:
     count=$(fd ^day.*$ -t d | wc -l)
     ((count=count+1))
     just make-day $count
+
+day-14:
+    just build 14
+    output/day14.exe
+    python3 tools/plot-script.py
+    rm robot-positions.txt
